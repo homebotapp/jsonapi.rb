@@ -5,7 +5,7 @@ rescue LoadError
 end
 
 # Filtering and sorting support
-module JSONAPI
+module JSONAPIHB
   module Filtering
     # Parses and returns the attribute and the predicate of a ransack field
     #
@@ -56,7 +56,7 @@ module JSONAPI
       allowed_fields = allowed_fields.map(&:to_s)
 
       requested.each_pair do |requested_field, to_filter|
-        field_names, predicates = JSONAPI::Filtering
+        field_names, predicates = JSONAPIHB::Filtering
           .extract_attributes_and_predicates(requested_field)
 
         wants_array = predicates.any? && predicates.map(&:wants_array).any?
@@ -90,7 +90,7 @@ module JSONAPI
           dir = 'asc'
         end
 
-        field_names, predicates = JSONAPI::Filtering
+        field_names, predicates = JSONAPIHB::Filtering
           .extract_attributes_and_predicates(requested_field)
 
         next unless (field_names - allowed_fields).empty?

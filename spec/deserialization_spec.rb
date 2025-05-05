@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe JSONAPI::Deserialization do
+RSpec.describe JSONAPIHB::Deserialization do
   let(:jsonapi_deserialize) { UsersController.new.method(:jsonapi_deserialize) }
   let(:document) do
     {

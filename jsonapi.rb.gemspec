@@ -1,11 +1,11 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require 'jsonapi/version'
+require 'jsonapihb/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'jsonapi.rb'
-  spec.version       = JSONAPI::VERSION
+  spec.version       = JSONAPIHB::VERSION
   spec.authors       = ['Stas Suscov']
   spec.email         = ['stas@nerd.ro']
 
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.post_install_message = (
-    'Install manually `ransack` gem before using `JSONAPI::Filtering`!'
+    'Install manually `ransack` gem before using `JSONAPIHB::Filtering`!'
   )
 
   spec.add_dependency 'jsonapi-serializer'

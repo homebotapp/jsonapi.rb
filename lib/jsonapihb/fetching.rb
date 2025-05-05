@@ -1,4 +1,4 @@
-module JSONAPI
+module JSONAPIHB
   # Inclusion and sparse fields support
   module Fetching
     private

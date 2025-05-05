@@ -8,11 +8,11 @@ rescue LoadError
   require 'dry/inflector'
 end
 
-module JSONAPI
+module JSONAPIHB
   # Helpers to transform a JSON API document, containing a single data object,
   # into a hash that can be used to create an [ActiveRecord::Base] instance.
   #
-  # Initial version from the `active_model_serializers` support for JSONAPI.
+  # Initial version from the `active_model_serializers` support for JSONAPIHB.
   module Deserialization
     private
     # Helper method to pick an available inflector implementation

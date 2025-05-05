@@ -4,7 +4,7 @@ RSpec.describe UsersController, type: :request do
   describe '#extract_attributes_and_predicate' do
     context 'mixed attributes (and/or)' do
       it 'extracts ANDs' do
-        attributes, predicates = JSONAPI::Filtering
+        attributes, predicates = JSONAPIHB::Filtering
           .extract_attributes_and_predicates('attr1_and_attr2_eq')
         expect(attributes).to eq(['attr1', 'attr2'])
         expect(predicates.size).to eq(1)
@@ -14,7 +14,7 @@ RSpec.describe UsersController, type: :request do
 
     context 'mixed predicates' do
       it 'extracts in order' do
-        attributes, predicates = JSONAPI::Filtering
+        attributes, predicates = JSONAPIHB::Filtering
           .extract_attributes_and_predicates('attr1_sum_eq')
         expect(attributes).to eq(['attr1'])
         expect(predicates.size).to eq(2)
