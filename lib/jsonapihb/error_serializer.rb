@@ -1,6 +1,6 @@
 require 'jsonapi/serializer'
 
-module JSONAPI
+module JSONAPIHB
   # A simple error serializer
   class ErrorSerializer
     include JSONAPI::Serializer

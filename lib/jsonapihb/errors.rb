@@ -1,6 +1,6 @@
 require 'rack/utils'
 
-module JSONAPI
+module JSONAPIHB
   # Helpers to handle some error responses
   #
   # Most of the exceptions are handled in Rails by [ActionDispatch] middleware
@@ -32,7 +32,7 @@ module JSONAPI
     # Generic error handler callback
     #
     # @param exception [Exception] instance to handle
-    # @return [String] JSONAPI error response
+    # @return [String] JSONAPIHB error response
     def render_jsonapi_internal_server_error(exception)
       error = { status: '500', title: Rack::Utils::HTTP_STATUS_CODES[500] }
       render jsonapi_errors: [error], status: :internal_server_error
@@ -41,7 +41,7 @@ module JSONAPI
     # Not found (404) error handler callback
     #
     # @param exception [Exception] instance to handle
-    # @return [String] JSONAPI error response
+    # @return [String] JSONAPIHB error response
     def render_jsonapi_not_found(exception)
       error = { status: '404', title: Rack::Utils::HTTP_STATUS_CODES[404] }
       render jsonapi_errors: [error], status: :not_found
@@ -50,7 +50,7 @@ module JSONAPI
     # Unprocessable entity (422) error handler callback
     #
     # @param exception [Exception] instance to handle
-    # @return [String] JSONAPI error response
+    # @return [String] JSONAPIHB error response
     def render_jsonapi_unprocessable_entity(exception)
       source = { pointer: '' }
 

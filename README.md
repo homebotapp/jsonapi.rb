@@ -1,4 +1,4 @@
-# JSONAPI.rb :electric_plug:
+# JSONAPIHB.rb :electric_plug:
 
 [![Build Status](https://travis-ci.org/stas/jsonapi.rb.svg?branch=master)](https://travis-ci.org/stas/jsonapi.rb)
 
@@ -19,7 +19,7 @@ easier and faster.
 It's quite a hassle to setup a Ruby (Rails) web application to use and follow
 the JSON:API specifications.
 
-The idea is simple, JSONAPI.rb offers a bunch of modules/mixins/glue,
+The idea is simple, JSONAPIHB.rb offers a bunch of modules/mixins/glue,
 add them to your controllers, call some methods, _profit_!
 
 Main goals:
@@ -91,9 +91,9 @@ To enable the support for Rails, add this to an initializer:
 
 ```ruby
 # config/initializers/jsonapi.rb
-require 'jsonapi'
+require 'jsonapihb'
 
-JSONAPI::Rails.install!
+JSONAPIHB::Rails.install!
 ```
 
 This will register the mime type and the `jsonapi` and `jsonapi_errors`
@@ -124,7 +124,7 @@ class CustomNamingController < ActionController::Base
   private
 
   def jsonapi_serializer_class(resource, is_collection)
-    JSONAPI::Rails.serializer_class(resource, is_collection)
+    JSONAPIHB::Rails.serializer_class(resource, is_collection)
   rescue NameError
     # your serializer class naming implementation
   end
@@ -173,7 +173,7 @@ end
 
 ### Error handling
 
-`JSONAPI::Errors` provides a basic error handling. It will generate a valid
+`JSONAPIHB::Errors` provides a basic error handling. It will generate a valid
 error response on exceptions from strong parameters, on generic errors or
 when a record is not found.
 
@@ -186,7 +186,7 @@ Here's an example:
 
 ```ruby
 class MyController < ActionController::Base
-  include JSONAPI::Errors
+  include JSONAPIHB::Errors
 
   def update
     record = Model.find(params[:id])
@@ -210,14 +210,14 @@ end
 
 ### _Includes_ and sparse fields
 
-`JSONAPI::Fetching` provides support on inclusion of related resources and
+`JSONAPIHB::Fetching` provides support on inclusion of related resources and
 serialization of only specific fields.
 
 Here's an example:
 
 ```ruby
 class MyController < ActionController::Base
-  include JSONAPI::Fetching
+  include JSONAPIHB::Fetching
 
   def index
     render jsonapi: Model.all
@@ -240,7 +240,7 @@ $ curl -X GET /api/resources?fields[model]=model_attr,relationship
 
 ### Filtering and sorting
 
-`JSONAPI::Filtering` uses the power of
+`JSONAPIHB::Filtering` uses the power of
 [Ransack](https://github.com/activerecord-hackery/ransack#search-matchers)
 to filter and sort over a collection of records.
 The support is pretty extended and covers also relationships and composite
@@ -252,7 +252,7 @@ Here's an example:
 
 ```ruby
 class MyController < ActionController::Base
-  include JSONAPI::Filtering
+  include JSONAPIHB::Filtering
 
   def index
     allowed = [:model_attr, :relationship_attr]
@@ -293,14 +293,14 @@ $ curl -X GET /api/resources?sort=-model_attr_sum
 
 ### Pagination
 
-`JSONAPI::Pagination` provides support for paginating model record sets as long
+`JSONAPIHB::Pagination` provides support for paginating model record sets as long
 as enumerables.
 
 Here's an example:
 
 ```ruby
 class MyController < ActionController::Base
-  include JSONAPI::Pagination
+  include JSONAPIHB::Pagination
 
   def index
     jsonapi_paginate(Model.all) do |paginated|
@@ -337,14 +337,14 @@ If you want to change the default number of items per page or define a custom lo
 ```
 ### Deserialization
 
-`JSONAPI::Deserialization` provides a helper to transform a `JSONAPI` document
+`JSONAPIHB::Deserialization` provides a helper to transform a `JSONAPIHB` document
 into a flat dictionary that can be used to update an `ActiveRecord::Base` model.
 
 Here's an example using the `jsonapi_deserialize` helper:
 
 ```ruby
 class MyController < ActionController::Base
-  include JSONAPI::Deserialization
+  include JSONAPIHB::Deserialization
 
   def update
     model = MyModel.find(params[:id])

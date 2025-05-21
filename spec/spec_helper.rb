@@ -10,10 +10,10 @@ SimpleCov.minimum_coverage 90
 require 'dummy'
 require 'ffaker'
 require 'rspec/rails'
-require 'jsonapi/rspec'
+require 'jsonapihb/rspec'
 
 RSpec.configure do |config|
-  config.include JSONAPI::RSpec
+  config.include JSONAPIHB::RSpec
 
   config.use_transactional_fixtures = true
   config.mock_with :rspec
@@ -28,7 +28,7 @@ end
 module RSpecHelpers
   include Dummy.routes.url_helpers
 
-  # Helper to return JSONAPI valid headers
+  # Helper to return JSONAPIHB valid headers
   #
   # @return [Hash] the relevant content type &co
   def jsonapi_headers

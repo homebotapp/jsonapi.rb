@@ -1,12 +1,12 @@
 require 'securerandom'
 require 'rails/all'
 require 'ransack'
-require 'jsonapi'
+require 'jsonapihb'
 
 Rails.logger = Logger.new(STDOUT)
 Rails.logger.level = ENV['LOG_LEVEL'] || Logger::WARN
 
-JSONAPI::Rails.install!
+JSONAPIHB::Rails.install!
 
 ActiveRecord::Base.logger = Rails.logger
 ActiveRecord::Base.establish_connection(
@@ -96,10 +96,10 @@ class Dummy < Rails::Application
 end
 
 class UsersController < ActionController::Base
-  include JSONAPI::Fetching
-  include JSONAPI::Filtering
-  include JSONAPI::Pagination
-  include JSONAPI::Deserialization
+  include JSONAPIHB::Fetching
+  include JSONAPIHB::Filtering
+  include JSONAPIHB::Pagination
+  include JSONAPIHB::Deserialization
 
   def index
     allowed_fields = [
@@ -141,8 +141,8 @@ class UsersController < ActionController::Base
 end
 
 class NotesController < ActionController::Base
-  include JSONAPI::Errors
-  include JSONAPI::Deserialization
+  include JSONAPIHB::Errors
+  include JSONAPIHB::Deserialization
 
   def update
     raise_error! if params[:id] == 'tada'
@@ -165,7 +165,7 @@ class NotesController < ActionController::Base
   end
 
   def jsonapi_serializer_class(resource, is_collection)
-    JSONAPI::Rails.serializer_class(resource, is_collection)
+    JSONAPIHB::Rails.serializer_class(resource, is_collection)
   rescue NameError
     klass = resource.class
     klass = resource.first.class if is_collection

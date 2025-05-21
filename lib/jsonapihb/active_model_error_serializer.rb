@@ -1,6 +1,6 @@
-require 'jsonapi/error_serializer'
+require 'jsonapihb/error_serializer'
 
-module JSONAPI
+module JSONAPIHB
   # [ActiveModel::Errors] serializer
   class ActiveModelErrorSerializer < ErrorSerializer
     attribute :status do

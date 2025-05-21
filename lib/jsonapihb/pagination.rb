@@ -1,9 +1,9 @@
-module JSONAPI
+module JSONAPIHB
   # Pagination support
   module Pagination
     private
     # Default number of items per page.
-    JSONAPI_PAGE_SIZE = 30
+    JSONAPIHB_PAGE_SIZE = 30
 
     # Applies pagination to a set of resources
     #
@@ -57,7 +57,7 @@ module JSONAPI
     #
     # @return [Hash] with the first, previous, next, current, last page numbers
     def jsonapi_pagination_meta(resources)
-      return {} unless JSONAPI::Rails.is_collection?(resources)
+      return {} unless JSONAPIHB::Rails.is_collection?(resources)
 
       _, limit, page = jsonapi_pagination_params
 
@@ -106,7 +106,7 @@ module JSONAPI
       per_page = pagination_params[:size].to_f.to_i
 
       return self.class
-              .const_get(:JSONAPI_PAGE_SIZE)
+              .const_get(:JSONAPIHB_PAGE_SIZE)
               .to_i if per_page < 1
 
       per_page
